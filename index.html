@@ -50,6 +50,13 @@
                             placeholder="Emojis come out here" readonly="readonly"></textarea>
                 <small id="length" class="form-text text-muted" style="text-align: right;"></small>
             </div>
+            <div class="form-group">
+                <button type="button"
+                        class="copy btn btn-primary float-right"
+                        style="width: 20%"
+                        data-clipboard-target="#output"
+                        id="copy">Copy</button>
+            </div>
             <div class="form-group row">
                 <div class="col">
                     <label class="form-check-label">
@@ -106,12 +113,16 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
             integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
             crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+
     <script type="text/javascript">
         var area = document.getElementById("input");
         var output = document.getElementById("output");
         var spaces = document.getElementById("spaced");
         var emojiPicker = document.getElementById("emoji");
         var length = document.getElementById("length");
+
+        var clipboard = new Clipboard('.copy');
 
         area.addEventListener("input", updateOutput);
         spaces.addEventListener("change", updateOutput);
