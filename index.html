@@ -63,7 +63,7 @@
                             id="output"
                             cols="80"
                             rows="3"
-                            placeholder="Emojis come out here" readonly="readonly"></textarea>
+                            placeholder="Emojis come out here" readonly></textarea>
                 <small id="length" class="form-text text-muted" style="text-align: right;"></small>
             </div>
             <div class="form-group">
@@ -120,9 +120,6 @@
     </div>
     <!-- /container -->
 
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
-            integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-            crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
 
     <script type="text/javascript">
@@ -147,11 +144,24 @@
 
             length.innerHTML = "(" + result.length + "/140)";
             if (result.length > 140) {
-                // Resort to jQuery because I'm lazy.
-                $(length).addClass("text-danger");
+                if (!hasClass(length, 'text-danger')) addClass(length, 'text-danger');
             } else {
-                $(length).removeClass("text-danger");
+                if (hasClass(length, 'text-danger')) removeClass(length, 'text-danger');
             }
+        }
+
+        function hasClass(el, className) {
+            return el.classList ? el.classList.contains(className) : new RegExp('\\b'+ className+'\\b').test(el.className);
+        }
+
+        function addClass(el, className) {
+            if (el.classList) el.classList.add(className);
+            else if (!hasClass(el, className)) el.className += ' ' + className;
+        }
+
+        function removeClass(el, className) {
+            if (el.classList) el.classList.remove(className);
+            else el.className = el.className.replace(new RegExp('\\b'+ className+'\\b', 'g'), '');
         }
     </script>
 </body>
