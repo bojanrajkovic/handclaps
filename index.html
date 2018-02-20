@@ -142,8 +142,8 @@
             var result = words.join(joiner);
             output.value = result;
 
-            length.innerHTML = "(" + result.length + "/140)";
-            if (result.length > 140) {
+            length.innerHTML = "(" + result.length + "/280)";
+            if (result.length > 280) {
                 if (!hasClass(length, 'text-danger')) addClass(length, 'text-danger');
             } else {
                 if (hasClass(length, 'text-danger')) removeClass(length, 'text-danger');
