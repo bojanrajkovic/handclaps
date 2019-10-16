@@ -130,7 +130,6 @@
         var spaces = document.getElementById("spaced");
         var emojiPicker = document.getElementById("emoji");
         var length = document.getElementById("length");
-        var emoji;
         var customEntry = document.getElementById("custom");
         var clipboard = new Clipboard('.copy');
 
@@ -148,24 +147,38 @@
 
             length.innerHTML = "(" + result.length + "/280)";
             if (result.length > 280) {
-                if (!hasClass(length, 'text-danger')) addClass(length, 'text-danger');
+                if (!hasClass(length, "text-danger")) {
+                    addClass(length, "text-danger");
+                }
             } else {
-                if (hasClass(length, 'text-danger')) removeClass(length, 'text-danger');
+                if (hasClass(length, "text-danger")) {
+                    removeClass(length, "text-danger");
+                }
             }
         }
 
         function hasClass(el, className) {
-            return el.classList ? el.classList.contains(className) : new RegExp('\\b'+ className+'\\b').test(el.className);
+            if (el.classList) {
+                return el.classList.contains(className);
+            } else {
+                return new RegExp("\\b" + className + "\\b").test(el.className);
+            }
         }
 
         function addClass(el, className) {
-            if (el.classList) el.classList.add(className);
-            else if (!hasClass(el, className)) el.className += ' ' + className;
+            if (el.classList) {
+                el.classList.add(className);
+            } else if (!hasClass(el, className)) {
+                el.className += " " + className;
+            }
         }
 
         function removeClass(el, className) {
-            if (el.classList) el.classList.remove(className);
-            else el.className = el.className.replace(new RegExp('\\b'+ className+'\\b', 'g'), '');
+            if (el.classList) {
+                el.classList.remove(className);
+            } else {
+                el.className = el.className.replace(new RegExp("\\b" + className + "\\b", "g"), "");
+            }
         }
     </script>
 </body>
